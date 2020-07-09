@@ -6,7 +6,7 @@ namespace Dartware.NRadio.BassWrapper
     /// Stream/Sample/Music/Recording/BASS_FX create flags to be used with BASS_StreamCreate(Int32, Int32, BASSFlag, STREAMPROC, IntPtr), BASS_StreamCreateFile(String, Int64, Int64, BASSFlag), BASS_StreamCreateFileUser(BASSStreamSystem, BASSFlag, BASS_FILEPROCS, IntPtr), BASS_StreamCreateURL(String, Int32, BASSFlag, DOWNLOADPROC, IntPtr), BASS_SampleCreate(Int32, Int32, Int32, Int32, BASSFlag), BASS_SampleLoad(String, Int64, Int32, Int32, BASSFlag), BASS_SAMPLE, BASS_MusicLoad(String, Int64, Int32, BASSFlag, Int32), BASS_RecordStart(Int32, Int32, BASSFlag, RECORDPROC, IntPtr) and BASS_FX_TempoCreate(Int32, BASSFlag), BASS_FX_ReverseCreate(Int32, Single, BASSFlag), BASS_FX_BPM_DecodeGet(Int32, Double, Double, Int32, BASSFXBpm, BPMPROGRESSPROC, IntPtr), BASS_FX_BPM_CallbackSet(Int32, BPMPROC, Double, Int32, BASSFXBpm, IntPtr) etc.
     /// </summary>
 	[Flags]
-	public enum BASSFlag
+	internal enum BASSFlag
 	{
         /// <summary>
         /// 0 = default create stream: 16 Bit, stereo, no Float, hardware mixing, no Loop, no 3D, no speaker assignments.

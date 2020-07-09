@@ -6,7 +6,7 @@ namespace Dartware.NRadio.BassWrapper
     /// Initialization flags to be used with BASS_Init(Int32, Int32, BASSInit, IntPtr, IntPtr).
     /// </summary>
 	[Flags]
-	public enum BASSInit
+	internal enum BASSInit
 	{
         /// <summary>
         /// 0 = 16 bit, stereo, no 3D, no Latency calc, no Speaker Assignments.

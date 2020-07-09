@@ -5,7 +5,7 @@ namespace Dartware.NRadio.BassWrapper
     /// <summary>
     /// FX effect types, use with BASS_ChannelSetFX(Int32, BASSFXType, Int32).
     /// </summary>
-	public enum BASSFXType
+	internal enum BASSFXType
 	{
         /// <summary>
         /// DX8 Chorus. Use BASS_DX8_CHORUS structure to set/get parameters.
