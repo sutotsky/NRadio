@@ -11,7 +11,14 @@ namespace Dartware.NRadio
 		/// <summary>
 		/// Gets or sets the stream URL.
 		/// </summary>
+		/// <exception cref="ArgumentNullException"></exception>
 		String URL { get; set; }
+
+		/// <summary>
+		/// Gets or sets the volume level. Values in the range from 0 to 100 are allowed.
+		/// </summary>
+		/// <exception cref="ArgumentOutOfRangeException"></exception>
+		Double Volume { get; set; }
 
 		/// <summary>
 		/// Starts playing.

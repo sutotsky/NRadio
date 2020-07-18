@@ -59,6 +59,28 @@ namespace Dartware.NRadio.BassWrapper
 		internal static extern Boolean BASS_ChannelPlay(Int32 handle, [MarshalAs(UnmanagedType.Bool)] Boolean restart);
 
 		/// <summary>
+		/// Sets the value of an attribute of a sample, stream or MOD music.
+		/// </summary>
+		/// <param name="handle">The channel handle... a HCHANNEL, HMUSIC, HSTREAM or HRECORD.</param>
+		/// <param name="attrib">The attribute to set the value of <see cref="BASSAttribute"/>.</param>
+		/// <param name="value">The new attribute value. See the attribute's documentation for details on the possible values.</param>
+		/// <returns>If successful, true is returned, else false is returned. Use BASS_ErrorGetCode() to get the error code.</returns>
+		[DllImport("bass")]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		internal static extern Boolean BASS_ChannelSetAttribute(Int32 handle, BASSAttribute attrib, Single value);
+
+		/// <summary>
+		/// Retrieves the value of an attribute of a sample, stream or MOD music. Can also get the sample rate of a recording channel.
+		/// </summary>
+		/// <param name="handle">The channel handle... a HCHANNEL, HMUSIC, HSTREAM or HRECORD.</param>
+		/// <param name="attrib">The attribute to set the value of <see cref="BASSAttribute"/>.</param>
+		/// <param name="value">Pointer to a variable to receive the attribute value.</param>
+		/// <returns>If successful, true is returned, else false is returned. Use BASS_ErrorGetCode() to get the error code.</returns>
+		[DllImport("bass")]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		internal static extern Boolean BASS_ChannelGetAttribute(Int32 handle, BASSAttribute attrib, ref Single value);
+
+		/// <summary>
 		/// Initializes an output device.
 		/// </summary>
 		/// <param name="device">The device to use... -1 = default device, 0 = no sound, 1 = first real output device. BASS_GetDeviceInfo can be used to enumerate the available devices.</param>
