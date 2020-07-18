@@ -23,29 +23,17 @@ namespace Dartware.NRadio
 
 				url = value;
 
-				SetURL(url);
+				if (String.IsNullOrEmpty(url))
+				{
+					throw new ArgumentNullException(nameof(url), "URL cannot be null or empty.");
+				}
+
+				Free();
+				Bass.BASS_Init(-1, 44100, BASSInit.BASS_DEVICE_DEFAULT, IntPtr.Zero);
+
+				handle = Bass.BASS_StreamCreateURL(url, 0, BASSFlag.BASS_DEFAULT, null, IntPtr.Zero);
 
 			}
-		}
-
-		/// <summary>
-		/// Sets the steam URL.
-		/// </summary>
-		/// <param name="url">Stream URL.</param>
-		/// <exception cref="ArgumentNullException"></exception>
-		private void SetURL(String url)
-		{
-
-			if (String.IsNullOrEmpty(url))
-			{
-				throw new ArgumentNullException(nameof(url), "URL cannot be null or empty.");
-			}
-
-			Free();
-			Bass.BASS_Init(-1, 44100, BASSInit.BASS_DEVICE_DEFAULT, IntPtr.Zero);
-
-			handle = Bass.BASS_StreamCreateURL(url, 0, BASSFlag.BASS_DEFAULT, null, IntPtr.Zero);
-
 		}
 
 	}

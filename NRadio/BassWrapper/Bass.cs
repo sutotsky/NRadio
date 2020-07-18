@@ -12,10 +12,10 @@ namespace Dartware.NRadio.BassWrapper
 		/// <summary>
 		/// Initializes an output device.
 		/// </summary>
-		/// <param name="device">The device to use... -1 = default device, 0 = no sound, 1 = first real output device. BASS_GetDeviceInfo(Int32, BASS_DEVICEINFO) or BASS_GetDeviceCount() can be used to get the total number of devices.</param>
+		/// <param name="device">The device to use. -1 = default device, 0 = no sound, 1 = first real output device. BASS_GetDeviceInfo(Int32, BASS_DEVICEINFO) or BASS_GetDeviceCount() can be used to get the total number of devices.</param>
 		/// <param name="freq">Output sample rate.</param>
 		/// <param name="flags">Any combination of these flags (see <see cref="BASSInit"/>).</param>
-		/// <param name="win">The application's main window... Zero = the desktop window (use this for console applications).</param>
+		/// <param name="win">The application's main window. Zero = the desktop window (use this for console applications).</param>
 		/// <returns></returns>
 		internal static Boolean BASS_Init(Int32 device, Int32 freq, BASSInit flags, IntPtr win) => BASS_Init(device, freq, flags, win, IntPtr.Zero);
 
