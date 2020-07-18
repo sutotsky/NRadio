@@ -19,11 +19,18 @@ namespace Dartware.NRadio
 		/// </summary>
 		internal RadioEngine()
 		{
-			
-			this.volume = 100;
+			volume = 100;
+		}
 
-			Bass.BASS_Init(-1, 44100, BASSInit.BASS_DEVICE_DEFAULT, IntPtr.Zero);
-
+		/// <summary>
+		/// Frees all resources used by the output device, including stream by handle.
+		/// </summary>
+		private void Free()
+		{
+			Bass.BASS_ChannelStop(handle);
+			Bass.BASS_Stop();
+			Bass.BASS_StreamFree(handle);
+			Bass.BASS_Free();
 		}
 
 	}

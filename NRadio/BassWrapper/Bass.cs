@@ -81,6 +81,47 @@ namespace Dartware.NRadio.BassWrapper
 		internal static extern Boolean BASS_ChannelGetAttribute(Int32 handle, BASSAttribute attrib, ref Single value);
 
 		/// <summary>
+		/// Frees all resources used by the output device, including all it's samples, streams, and MOD musics.
+		/// </summary>
+		/// <returns>If successful, then true is returned, else false is returned. Use BASS_ErrorGetCode() to get the error code.</returns>
+		[DllImport("bass")]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		internal static extern Boolean BASS_Free();
+
+		/// <summary>
+		/// Frees a sample stream's resources, including any SYNC/DSP/FX it has.
+		/// </summary>
+		/// <param name="handle">The stream handle.</param>
+		/// <returns>If successful, true is returned, else false is returned. Use <see cref="BASS_ErrorGetCode"/> to get the error code.</returns>
+		[DllImport("bass")]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		internal static extern Boolean BASS_StreamFree(Int32 handle);
+
+		/// <summary>
+		/// Stops the output, stopping all musics/samples/streams.
+		/// </summary>
+		/// <returns>If successful, then true is returned, else false is returned. Use BASS_ErrorGetCode() to get the error code.</returns>
+		[DllImport("bass")]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		internal static extern Boolean BASS_Stop();
+
+		/// <summary>
+		/// Stops a sample, stream, MOD music, or recording.
+		/// </summary>
+		/// <param name="handle">The channel handle... a HCHANNEL, HMUSIC, HSTREAM or HRECORD handle.</param>
+		/// <returns>If successful, true is returned, else false is returned. Use BASS_ErrorGetCode() to get the error code.</returns>
+		[DllImport("bass")]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		internal static extern Boolean BASS_ChannelStop(Int32 handle);
+
+		/// <summary>
+		/// Retrieves the error code for the most recent BASS function call in the current thread.
+		/// </summary>
+		/// <returns>If no error occured during the last BASS function call then <see cref="BASSError.BASS_OK"/> is returned, else one of the <see cref="BASSError"/> values is returned. See the function description for an explanation of what the error code means.</returns>
+		[DllImport("bass")]
+		internal static extern BASSError BASS_ErrorGetCode();
+
+		/// <summary>
 		/// Initializes an output device.
 		/// </summary>
 		/// <param name="device">The device to use... -1 = default device, 0 = no sound, 1 = first real output device. BASS_GetDeviceInfo can be used to enumerate the available devices.</param>

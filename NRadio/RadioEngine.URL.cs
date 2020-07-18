@@ -38,8 +38,11 @@ namespace Dartware.NRadio
 
 			if (String.IsNullOrEmpty(url))
 			{
-				throw new ArgumentNullException(nameof(url), "URL cannot be null.");
+				throw new ArgumentNullException(nameof(url), "URL cannot be null or empty.");
 			}
+
+			Free();
+			Bass.BASS_Init(-1, 44100, BASSInit.BASS_DEVICE_DEFAULT, IntPtr.Zero);
 
 			handle = Bass.BASS_StreamCreateURL(url, 0, BASSFlag.BASS_DEFAULT, null, IntPtr.Zero);
 
