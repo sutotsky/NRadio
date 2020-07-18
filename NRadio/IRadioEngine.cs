@@ -25,5 +25,10 @@ namespace Dartware.NRadio
 		/// </summary>
 		void Play();
 
+		/// <summary>
+		/// Pause playing.
+		/// </summary>
+		void Pause();
+
 	}
 }

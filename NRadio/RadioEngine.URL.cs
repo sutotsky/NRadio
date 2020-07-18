@@ -1,0 +1,49 @@
+﻿using System;
+using Dartware.NRadio.BassWrapper;
+
+namespace Dartware.NRadio
+{
+	internal sealed partial class RadioEngine
+	{
+
+		/// <summary>
+		/// Stream URL.
+		/// </summary>
+		private String url;
+
+		/// <summary>
+		/// Gets or sets the stream URL.
+		/// </summary>
+		/// <exception cref="ArgumentNullException"></exception>
+		public String URL
+		{
+			get => url;
+			set
+			{
+
+				url = value;
+
+				SetURL(url);
+
+			}
+		}
+
+		/// <summary>
+		/// Sets the steam URL.
+		/// </summary>
+		/// <param name="url">Stream URL.</param>
+		/// <exception cref="ArgumentNullException"></exception>
+		private void SetURL(String url)
+		{
+
+			if (String.IsNullOrEmpty(url))
+			{
+				throw new ArgumentNullException(nameof(url), "URL cannot be null.");
+			}
+
+			handle = Bass.BASS_StreamCreateURL(url, 0, BASSFlag.BASS_DEFAULT, null, IntPtr.Zero);
+
+		}
+
+	}
+}
