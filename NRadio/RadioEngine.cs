@@ -49,10 +49,10 @@ namespace Dartware.NRadio
 
 				if (Bass.BASS_ChannelGetAttribute(handle, BASSAttribute.BASS_ATTRIB_VOL, ref volume))
 				{
-					return volume * 100;
+					volume *= 100;
 				}
 
-				return 0;
+				return volume;
 
 			}
 			set
