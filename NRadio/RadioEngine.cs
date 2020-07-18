@@ -10,6 +10,11 @@ namespace Dartware.NRadio
 	{
 
 		/// <summary>
+		/// Sampling frequency.
+		/// </summary>
+		private const Int32 SAMPLING_FREQUENCY = 44100;
+
+		/// <summary>
 		/// The channel handle. A HSTREAM, HMUSIC, or HRECORD.
 		/// </summary>
 		private Int32 handle;
@@ -20,6 +25,14 @@ namespace Dartware.NRadio
 		internal RadioEngine()
 		{
 			volume = 100;
+		}
+
+		/// <summary>
+		/// Initialize engine.
+		/// </summary>
+		private void Init()
+		{
+			Bass.BASS_Init(-1, SAMPLING_FREQUENCY, BASSInit.BASS_DEVICE_DEFAULT, IntPtr.Zero);
 		}
 
 		/// <summary>

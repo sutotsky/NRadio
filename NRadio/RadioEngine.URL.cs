@@ -29,7 +29,7 @@ namespace Dartware.NRadio
 				}
 
 				Free();
-				Bass.BASS_Init(-1, 44100, BASSInit.BASS_DEVICE_DEFAULT, IntPtr.Zero);
+				Init();
 
 				handle = Bass.BASS_StreamCreateURL(url, 0, BASSFlag.BASS_DEFAULT, null, IntPtr.Zero);
 
