@@ -8,6 +8,6 @@
 		/// <summary>
 		/// Gets the default <see cref="IRadioEngine"/> implementation instance for this factory.
 		/// </summary>
-		public static IRadioEngine Engine => new RadioEngine();
+		public static IRadioEngine Default => new RadioEngine();
 	}
 }

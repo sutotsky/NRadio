@@ -12,7 +12,7 @@ namespace Dartware.NRadio
 		/// <summary>
 		/// The channel handle. A HSTREAM, HMUSIC, or HRECORD.
 		/// </summary>
-		private Int32 stream;
+		private Int32 handle;
 
 		/// <summary>
 		/// Stream URL.
@@ -49,7 +49,7 @@ namespace Dartware.NRadio
 		/// </summary>
 		public void Play()
 		{
-			Bass.BASS_ChannelPlay(stream, false);
+			Bass.BASS_ChannelPlay(handle, false);
 		}
 
 		/// <summary>
@@ -65,7 +65,7 @@ namespace Dartware.NRadio
 				throw new ArgumentNullException(nameof(url), "URL cannot be null.");
 			}
 
-			stream = Bass.BASS_StreamCreateURL(url, 0, BASSFlag.BASS_DEFAULT, null, IntPtr.Zero);
+			handle = Bass.BASS_StreamCreateURL(url, 0, BASSFlag.BASS_DEFAULT, null, IntPtr.Zero);
 
 		}
 
