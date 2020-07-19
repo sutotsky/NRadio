@@ -17,10 +17,10 @@ namespace Dartware.NRadio
 		public void Play()
 		{
 
-			isPlaying = true;
-			Volume = volume;
-
+			SetVolume(volume);
 			Bass.BASS_ChannelPlay(handle, false);
+
+			isPlaying = true;
 
 		}
 
@@ -29,8 +29,11 @@ namespace Dartware.NRadio
 		/// </summary>
 		public void Pause()
 		{
+
+			SetVolume(0);
+
 			isPlaying = false;
-			Volume = 0;
+
 		}
 
 	}

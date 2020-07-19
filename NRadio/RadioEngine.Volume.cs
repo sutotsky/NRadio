@@ -22,17 +22,10 @@ namespace Dartware.NRadio
 
 				if (!isPlaying)
 				{
-					return this.volume;
+					return volume;
 				}
 
-				Single volume = 0f;
-
-				if (Bass.BASS_ChannelGetAttribute(handle, BASSAttribute.BASS_ATTRIB_VOL, ref volume))
-				{
-					volume *= 100;
-				}
-
-				return volume;
+				return GetVolume();
 
 			}
 			set
@@ -43,14 +36,41 @@ namespace Dartware.NRadio
 					throw new ArgumentOutOfRangeException(nameof(value), "The value must be between 0 and 100.");
 				}
 
-				Bass.BASS_ChannelSetAttribute(handle, BASSAttribute.BASS_ATTRIB_VOL, (Single)(value / 100));
+				volume = value;
 
 				if (isPlaying)
 				{
-					volume = value;
+					SetVolume(value);
 				}
 
 			}
+		}
+
+		/// <summary>
+		/// Sets the volume level.
+		/// </summary>
+		/// <param name="volume">Volume level.</param>
+		private void SetVolume(Double volume)
+		{
+			Bass.BASS_ChannelSetAttribute(handle, BASSAttribute.BASS_ATTRIB_VOL, (Single) (volume / 100));
+		}
+
+		/// <summary>
+		/// Gets the current volume level.
+		/// </summary>
+		/// <returns>Current volume level.</returns>
+		private Double GetVolume()
+		{
+
+			Single volume = 0f;
+
+			if (Bass.BASS_ChannelGetAttribute(handle, BASSAttribute.BASS_ATTRIB_VOL, ref volume))
+			{
+				volume *= 100;
+			}
+
+			return volume;
+
 		}
 
 	}

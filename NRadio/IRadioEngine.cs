@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace Dartware.NRadio
 {
@@ -9,16 +10,28 @@ namespace Dartware.NRadio
 	{
 
 		/// <summary>
-		/// Gets or sets the stream URL.
+		/// Gets the stream URL.
 		/// </summary>
 		/// <exception cref="ArgumentNullException"></exception>
-		String URL { get; set; }
+		String URL { get; }
 
 		/// <summary>
 		/// Gets or sets the volume level. Values in the range from 0 to 100 are allowed.
 		/// </summary>
 		/// <exception cref="ArgumentOutOfRangeException"></exception>
 		Double Volume { get; set; }
+		
+		/// <summary>
+		/// Sets the stream URL.
+		/// </summary>
+		/// <param name="url">Stream URL.</param>
+		void SetURL(String url);
+
+		/// <summary>
+		/// Sets the stream URL.
+		/// </summary>
+		/// <param name="url">Stream URL.</param>
+		Task SetURLAsync(String url);
 
 		/// <summary>
 		/// Starts playing.

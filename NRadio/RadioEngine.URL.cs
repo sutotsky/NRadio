@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Dartware.NRadio.BassWrapper;
 
 namespace Dartware.NRadio
@@ -7,33 +8,44 @@ namespace Dartware.NRadio
 	{
 
 		/// <summary>
-		/// Stream URL.
+		/// Contains the current stream URL.
 		/// </summary>
 		private String url;
 
 		/// <summary>
-		/// Gets or sets the stream URL.
+		/// Gets the stream URL.
 		/// </summary>
 		/// <exception cref="ArgumentNullException"></exception>
-		public String URL
+		public String URL => url;
+
+		/// <summary>
+		/// Sets the stream URL.
+		/// </summary>
+		/// <param name="url">Stream URL.</param>
+		public void SetURL(String url)
 		{
-			get => url;
-			set
+
+			if (String.IsNullOrEmpty(url))
 			{
-
-				url = value;
-
-				if (String.IsNullOrEmpty(url))
-				{
-					throw new ArgumentNullException(nameof(url), "URL cannot be null or empty.");
-				}
-
-				Free();
-				Init();
-
-				handle = Bass.BASS_StreamCreateURL(url, 0, BASSFlag.BASS_DEFAULT, null, IntPtr.Zero);
-
+				throw new ArgumentNullException(nameof(url), "URL cannot be null or empty.");
 			}
+
+			this.url = url;
+
+			Free();
+			Init();
+
+			handle = Bass.BASS_StreamCreateURL(url, 0, BASSFlag.BASS_DEFAULT, null, IntPtr.Zero);
+
+		}
+
+		/// <summary>
+		/// Sets the stream URL.
+		/// </summary>
+		/// <param name="url">Stream URL.</param>
+		public async Task SetURLAsync(String url)
+		{
+			await Task.Run(() => SetURL(url));
 		}
 
 	}
