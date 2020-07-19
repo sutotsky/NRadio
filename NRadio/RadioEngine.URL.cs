@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Threading.Tasks;
 using Dartware.NRadio.BassWrapper;
 
@@ -8,15 +9,14 @@ namespace Dartware.NRadio
 	{
 
 		/// <summary>
+		/// The stream urls concurrent stack.
+		/// </summary>
+		private readonly ConcurrentStack<String> urlsStack;
+
+		/// <summary>
 		/// Contains the current stream URL.
 		/// </summary>
 		private String url;
-
-		/// <summary>
-		/// Gets the stream URL.
-		/// </summary>
-		/// <exception cref="ArgumentNullException"></exception>
-		public String URL => url;
 
 		/// <summary>
 		/// Sets the stream URL.
@@ -32,10 +32,21 @@ namespace Dartware.NRadio
 
 			this.url = url;
 
-			Free();
-			Init();
+			urlsStack.Push(url);
 
-			handle = Bass.BASS_StreamCreateURL(url, 0, BASSFlag.BASS_DEFAULT, null, IntPtr.Zero);
+			lock (urlsStack)
+			{
+				if (urlsStack.TryPeek(out String currentURL))
+				{
+
+					urlsStack.Clear();
+					Free();
+					Init();
+
+					handle = Bass.BASS_StreamCreateURL(currentURL, 0, BASSFlag.BASS_DEFAULT, null, IntPtr.Zero);
+
+				}
+			}
 
 		}
 
@@ -47,6 +58,12 @@ namespace Dartware.NRadio
 		{
 			await Task.Run(() => SetURL(url));
 		}
+
+		/// <summary>
+		/// Returns current URL of the stream.
+		/// </summary>
+		/// <returns>URL of the stream.</returns>
+		public String GetURL() => url;
 
 	}
 }

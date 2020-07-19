@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using Dartware.NRadio.BassWrapper;
 
 namespace Dartware.NRadio
@@ -25,6 +26,7 @@ namespace Dartware.NRadio
 		internal RadioEngine()
 		{
 			volume = 100;
+			urlsStack = new ConcurrentStack<String>();
 		}
 
 		/// <summary>
@@ -40,6 +42,7 @@ namespace Dartware.NRadio
 		/// </summary>
 		private void Free()
 		{
+			Pause();
 			Bass.BASS_ChannelStop(handle);
 			Bass.BASS_Stop();
 			Bass.BASS_StreamFree(handle);
