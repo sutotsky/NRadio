@@ -16,6 +16,16 @@ namespace Dartware.NRadio
 		Double Volume { get; set; }
 
 		/// <summary>
+		/// Occurs when connection is started.
+		/// </summary>
+		event Action ConnectionStarted;
+
+		/// <summary>
+		/// Occurs when connection is ended.
+		/// </summary>
+		event Action ConnectionEnded;
+
+		/// <summary>
 		/// Occurs when buffering is started.
 		/// </summary>
 		event Action BufferingStarted;

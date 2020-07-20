@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Threading;
 using Dartware.NRadio.BassWrapper;
 
 namespace Dartware.NRadio
@@ -34,7 +35,11 @@ namespace Dartware.NRadio
 		/// </summary>
 		private void Init()
 		{
+			
 			Bass.BASS_Init(-1, SAMPLING_FREQUENCY, BASSInit.BASS_DEVICE_DEFAULT, IntPtr.Zero);
+
+			bufferingCancellationTokenSource = new CancellationTokenSource();
+
 		}
 
 		/// <summary>
@@ -42,6 +47,7 @@ namespace Dartware.NRadio
 		/// </summary>
 		private void Free()
 		{
+			bufferingCancellationTokenSource?.Cancel();
 			Pause();
 			Bass.BASS_ChannelStop(handle);
 			Bass.BASS_Stop();

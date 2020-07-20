@@ -43,6 +43,7 @@ namespace Dartware.NRadio
 			this.url = url;
 
 			urlsStack.Push(url);
+			bufferingCancellationTokenSource?.Cancel();
 
 			lock (urlsStack)
 			{
@@ -53,9 +54,12 @@ namespace Dartware.NRadio
 					Free();
 					Init();
 
+					ConnectionStarted?.Invoke();
+
 					handle = Bass.BASS_StreamCreateURL(currentURL, 0, BASSFlag.BASS_DEFAULT, null, IntPtr.Zero);
 
-					StartBuferingHandle();
+					ConnectionEnded?.Invoke();
+					StartBuferingHandle(bufferingCancellationTokenSource.Token);
 
 				}
 			}

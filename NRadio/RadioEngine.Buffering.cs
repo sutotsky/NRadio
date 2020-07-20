@@ -8,6 +8,11 @@ namespace Dartware.NRadio
 	{
 
 		/// <summary>
+		/// Cancellation token source for buffering handle.
+		/// </summary>
+		private CancellationTokenSource bufferingCancellationTokenSource;
+
+		/// <summary>
 		/// Occurs when buffering is started.
 		/// </summary>
 		public event Action BufferingStarted;
@@ -25,12 +30,12 @@ namespace Dartware.NRadio
 		/// <summary>
 		/// Starts tracking buffering progress.
 		/// </summary>
-		private void StartBuferingHandle()
+		private void StartBuferingHandle(CancellationToken cancellationToken)
 		{
 
 			BufferingStarted?.Invoke();
 
-			while (Bass.BASS_ChannelIsActive(handle) != BASSActive.BASS_ACTIVE_PLAYING)
+			while (Bass.BASS_ChannelIsActive(handle) != BASSActive.BASS_ACTIVE_PLAYING && !cancellationToken.IsCancellationRequested)
 			{
 
 				Int64 filePosition = Bass.BASS_StreamGetFilePosition(handle, BASSStreamFilePosition.BASS_FILEPOS_BUFFERING);
@@ -50,6 +55,8 @@ namespace Dartware.NRadio
 				Thread.Sleep(50);
 
 			}
+
+			BufferingEnded?.Invoke();
 
 		}
 
