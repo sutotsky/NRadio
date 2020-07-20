@@ -1,0 +1,57 @@
+﻿using System;
+using System.Threading;
+using Dartware.NRadio.BassWrapper;
+
+namespace Dartware.NRadio
+{
+	internal sealed partial class RadioEngine
+	{
+
+		/// <summary>
+		/// Occurs when buffering is started.
+		/// </summary>
+		public event Action BufferingStarted;
+
+		/// <summary>
+		/// Occurs when buffering progress is changed.
+		/// </summary>
+		public event Action<Int64> BufferingProgressChanged;
+
+		/// <summary>
+		/// Occurs when buffering is ended.
+		/// </summary>
+		public event Action BufferingEnded;
+
+		/// <summary>
+		/// Starts tracking buffering progress.
+		/// </summary>
+		private void StartBuferingHandle()
+		{
+
+			BufferingStarted?.Invoke();
+
+			while (Bass.BASS_ChannelIsActive(handle) != BASSActive.BASS_ACTIVE_PLAYING)
+			{
+
+				Int64 filePosition = Bass.BASS_StreamGetFilePosition(handle, BASSStreamFilePosition.BASS_FILEPOS_BUFFERING);
+				Int64 bufferingPercentage = 100 - filePosition;
+
+				BufferingProgressChanged?.Invoke(bufferingPercentage);
+
+				if (bufferingPercentage < 0 || bufferingPercentage >= 100)
+				{
+
+					BufferingEnded?.Invoke();
+					
+					return;
+
+				}
+
+				Thread.Sleep(50);
+
+			}
+
+		}
+
+	}
+}

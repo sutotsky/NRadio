@@ -17,6 +17,16 @@ namespace Dartware.NRadio
 		/// Contains the current stream URL.
 		/// </summary>
 		private String url;
+		
+		/// <summary>
+		/// Occurs when connection is started.
+		/// </summary>
+		public event Action ConnectionStarted;
+
+		/// <summary>
+		/// Occurs when connection is ended.
+		/// </summary>
+		public event Action ConnectionEnded;
 
 		/// <summary>
 		/// Sets the stream URL.
@@ -44,6 +54,8 @@ namespace Dartware.NRadio
 					Init();
 
 					handle = Bass.BASS_StreamCreateURL(currentURL, 0, BASSFlag.BASS_DEFAULT, null, IntPtr.Zero);
+
+					StartBuferingHandle();
 
 				}
 			}

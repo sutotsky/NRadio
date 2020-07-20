@@ -122,6 +122,23 @@ namespace Dartware.NRadio.BassWrapper
 		internal static extern BASSError BASS_ErrorGetCode();
 
 		/// <summary>
+		/// Checks if a sample, stream, or MOD music is active (playing) or stalled. Can also check if a recording is in progress.
+		/// </summary>
+		/// <param name="handle">The channel handle. A HCHANNEL, HMUSIC, HSTREAM, or HRECORD.</param>
+		/// <returns>The return value is one of the <see cref="BASSActive)"/> enum value.</returns>
+		[DllImport("bass")]
+		internal static extern BASSActive BASS_ChannelIsActive(Int32 handle);
+
+		/// <summary>
+		/// Retrieves the decoding/download/end position of a file stream.
+		/// </summary>
+		/// <param name="handle">The stream's handle.</param>
+		/// <param name="mode">The file position to retrieve.</param>
+		/// <returns>If succesful, then the requested file position is returned, else -1 is returned. Use <see cref="BASS_ErrorGetCode"/> to get the error code.</returns>
+		[DllImport("bass")]
+		internal static extern Int64 BASS_StreamGetFilePosition(Int32 handle, BASSStreamFilePosition mode);
+
+		/// <summary>
 		/// Initializes an output device.
 		/// </summary>
 		/// <param name="device">The device to use... -1 = default device, 0 = no sound, 1 = first real output device. BASS_GetDeviceInfo can be used to enumerate the available devices.</param>

@@ -14,7 +14,22 @@ namespace Dartware.NRadio
 		/// </summary>
 		/// <exception cref="ArgumentOutOfRangeException"></exception>
 		Double Volume { get; set; }
-		
+
+		/// <summary>
+		/// Occurs when buffering is started.
+		/// </summary>
+		event Action BufferingStarted;
+
+		/// <summary>
+		/// Occurs when buffering progress is changed.
+		/// </summary>
+		event Action<Int64> BufferingProgressChanged;
+
+		/// <summary>
+		/// Occurs when buffering is ended.
+		/// </summary>
+		event Action BufferingEnded;
+
 		/// <summary>
 		/// Sets the stream URL.
 		/// </summary>
