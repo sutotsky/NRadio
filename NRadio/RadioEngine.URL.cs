@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
-using Dartware.NRadio.BassWrapper;
+using Un4seen.Bass;
 
 namespace Dartware.NRadio
 {
@@ -51,6 +51,7 @@ namespace Dartware.NRadio
 				{
 
 					urlsStack.Clear();
+
 					Free();
 					Init();
 
@@ -59,7 +60,12 @@ namespace Dartware.NRadio
 					handle = Bass.BASS_StreamCreateURL(currentURL, 0, BASSFlag.BASS_DEFAULT, null, IntPtr.Zero);
 
 					ConnectionEnded?.Invoke();
+
+					SetVolume(0);
+					Bass.BASS_ChannelPlay(handle, false);
+
 					StartBuferingHandle(bufferingCancellationTokenSource.Token);
+					StartMetadataHandle(metadataCancellationTokenSource.Token);
 
 				}
 			}

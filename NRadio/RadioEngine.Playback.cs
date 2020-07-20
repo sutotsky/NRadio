@@ -1,5 +1,4 @@
 ﻿using System;
-using Dartware.NRadio.BassWrapper;
 
 namespace Dartware.NRadio
 {
@@ -18,7 +17,6 @@ namespace Dartware.NRadio
 		{
 
 			SetVolume(volume);
-			Bass.BASS_ChannelPlay(handle, false);
 
 			isPlaying = true;
 

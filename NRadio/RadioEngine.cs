@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Threading;
-using Dartware.NRadio.BassWrapper;
+using Un4seen.Bass;
 
 namespace Dartware.NRadio
 {
@@ -39,6 +39,7 @@ namespace Dartware.NRadio
 			Bass.BASS_Init(-1, SAMPLING_FREQUENCY, BASSInit.BASS_DEVICE_DEFAULT, IntPtr.Zero);
 
 			bufferingCancellationTokenSource = new CancellationTokenSource();
+			metadataCancellationTokenSource = new CancellationTokenSource();
 
 		}
 
@@ -48,6 +49,7 @@ namespace Dartware.NRadio
 		private void Free()
 		{
 			bufferingCancellationTokenSource?.Cancel();
+			metadataCancellationTokenSource?.Cancel();
 			Pause();
 			Bass.BASS_ChannelStop(handle);
 			Bass.BASS_Stop();

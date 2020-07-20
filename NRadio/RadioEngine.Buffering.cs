@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading;
-using Dartware.NRadio.BassWrapper;
+using Un4seen.Bass;
 
 namespace Dartware.NRadio
 {
@@ -30,6 +30,7 @@ namespace Dartware.NRadio
 		/// <summary>
 		/// Starts tracking buffering progress.
 		/// </summary>
+		/// <param name="cancellationToken">Cancellation handling token.</param>
 		private void StartBuferingHandle(CancellationToken cancellationToken)
 		{
 

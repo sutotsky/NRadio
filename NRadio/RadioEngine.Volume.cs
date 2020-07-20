@@ -1,5 +1,5 @@
 ﻿using System;
-using Dartware.NRadio.BassWrapper;
+using Un4seen.Bass;
 
 namespace Dartware.NRadio
 {
