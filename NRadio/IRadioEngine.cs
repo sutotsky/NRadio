@@ -41,6 +41,11 @@ namespace Dartware.NRadio
 		event Action BufferingEnded;
 
 		/// <summary>
+		/// Occurs when metadata changed.
+		/// </summary>
+		event Action<Metadata> MetadataChanged;
+
+		/// <summary>
 		/// Sets the stream URL.
 		/// </summary>
 		/// <param name="url">Stream URL.</param>

@@ -48,13 +48,21 @@ namespace Dartware.NRadio
 		/// </summary>
 		private void Free()
 		{
+			
 			bufferingCancellationTokenSource?.Cancel();
 			metadataCancellationTokenSource?.Cancel();
+
+			MetadataChanged?.Invoke(Metadata.Empty);
+
+			metadata = Metadata.Empty;
+			
 			Pause();
 			Bass.BASS_ChannelStop(handle);
 			Bass.BASS_Stop();
+
 			Bass.BASS_StreamFree(handle);
 			Bass.BASS_Free();
+
 		}
 
 	}

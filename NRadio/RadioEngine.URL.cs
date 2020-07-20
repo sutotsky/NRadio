@@ -64,8 +64,8 @@ namespace Dartware.NRadio
 					SetVolume(0);
 					Bass.BASS_ChannelPlay(handle, false);
 
-					StartBuferingHandle(bufferingCancellationTokenSource.Token);
 					StartMetadataHandle(metadataCancellationTokenSource.Token);
+					StartBuferingHandle(bufferingCancellationTokenSource.Token);
 
 				}
 			}
