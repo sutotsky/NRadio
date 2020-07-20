@@ -30,6 +30,16 @@ namespace Dartware.NRadio
 		public String Title { get; }
 
 		/// <summary>
+		/// Stores the audio format.
+		/// </summary>
+		public Format Format { get; }
+
+		/// <summary>
+		/// Stores the current audio bitrate.
+		/// </summary>
+		public Int32 Bitrate { get; }
+
+		/// <summary>
 		/// Initializes a new instance of the <see cref="Metadata"/> class.
 		/// </summary>
 		private Metadata()
@@ -42,11 +52,15 @@ namespace Dartware.NRadio
 		/// <param name="songName">Name of the current song.</param>
 		/// <param name="artist">Artist name.</param>
 		/// <param name="title">Song title.</param>
-		internal Metadata(String songName, String artist, String title)
+		/// <param name="format">Audio format.</param>
+		/// <param name="bitrate">Audio bitrate.</param>
+		internal Metadata(String songName, String artist, String title, Format format, Int32 bitrate)
 		{
 			SongName = songName;
 			Artist = artist;
 			Title = title;
+			Format = format;
+			Bitrate = bitrate;
 		}
 
 		/// <summary>

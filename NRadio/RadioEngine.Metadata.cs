@@ -35,22 +35,36 @@ namespace Dartware.NRadio
 				while (!cancellationToken.IsCancellationRequested)
 				{
 
+					BASS_CHANNELINFO channelInfo = Bass.BASS_ChannelGetInfo(handle);
+					Format format = Format.Unknown;
+
+					if (channelInfo != null)
+					{
+						format = channelInfo.ctype.ToFormat();
+					}
+
 					TAG_INFO tagInfo = new TAG_INFO(url);
-					BASS_CHANNELINFO channelinfo = Bass.BASS_ChannelGetInfo(handle);
+					String songName = null;
+					String artist = null;
+					String title = null;
+					Int32 bitrate = 0;
 
 					if (BassTags.BASS_TAG_GetFromURL(handle, tagInfo))
 					{
+						songName = tagInfo.ToString();
+						artist = tagInfo.artist;
+						title = tagInfo.title;
+						bitrate = tagInfo.bitrate;
+					}
 
-						Metadata metadata = new Metadata(tagInfo.ToString(), tagInfo.artist, tagInfo.title);
+					Metadata metadata = new Metadata(songName, artist, title, format, bitrate);
 
-						if (!metadata.Equals(this.metadata))
-						{
+					if (!metadata.Equals(this.metadata))
+					{
 
-							this.metadata = metadata;
+						this.metadata = metadata;
 
-							MetadataChanged?.Invoke(metadata);
-
-						}
+						MetadataChanged?.Invoke(metadata);
 
 					}
 
