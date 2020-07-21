@@ -16,6 +16,11 @@ namespace Dartware.NRadio
 		Double Volume { get; set; }
 
 		/// <summary>
+		/// Gets the current metadata.
+		/// </summary>
+		Metadata Metadata { get; }
+
+		/// <summary>
 		/// Occurs when connection is started.
 		/// </summary>
 		event Action ConnectionStarted;

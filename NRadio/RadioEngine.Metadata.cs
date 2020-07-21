@@ -10,14 +10,14 @@ namespace Dartware.NRadio
 	{
 
 		/// <summary>
-		/// Stores current metadata.
-		/// </summary>
-		private Metadata metadata;
-
-		/// <summary>
 		/// Cancellation token source for metadata handle.
 		/// </summary>
 		private CancellationTokenSource metadataCancellationTokenSource;
+
+		/// <summary>
+		/// Gets the current metadata.
+		/// </summary>
+		public Metadata Metadata { get; private set; }
 
 		/// <summary>
 		/// Occurs when metadata changed.
@@ -59,10 +59,10 @@ namespace Dartware.NRadio
 
 					Metadata metadata = new Metadata(songName, artist, title, format, bitrate);
 
-					if (!metadata.Equals(this.metadata))
+					if (!metadata.Equals(Metadata))
 					{
 
-						this.metadata = metadata;
+						Metadata = metadata;
 
 						MetadataChanged?.Invoke(metadata);
 

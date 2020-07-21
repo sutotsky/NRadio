@@ -54,7 +54,7 @@ namespace Dartware.NRadio
 
 			MetadataChanged?.Invoke(Metadata.Empty);
 
-			metadata = Metadata.Empty;
+			Metadata = Metadata.Empty;
 			
 			Pause();
 			Bass.BASS_ChannelStop(handle);
