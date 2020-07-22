@@ -17,12 +17,12 @@ namespace Dartware.NRadio
 		/// <summary>
 		/// Gets the current metadata.
 		/// </summary>
-		public Metadata Metadata { get; private set; }
+		public IMetadata Metadata { get; private set; }
 
 		/// <summary>
 		/// Occurs when metadata changed.
 		/// </summary>
-		public event Action<Metadata> MetadataChanged;
+		public event Action<IMetadata> MetadataChanged;
 
 		/// <summary>
 		/// Starts tracking metadata changes.
@@ -57,7 +57,7 @@ namespace Dartware.NRadio
 						bitrate = tagInfo.bitrate;
 					}
 
-					Metadata metadata = new Metadata(songName, artist, title, format, bitrate);
+					IMetadata metadata = new Metadata(songName, artist, title, format, bitrate);
 
 					if (!metadata.Equals(Metadata))
 					{

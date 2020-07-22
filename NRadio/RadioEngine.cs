@@ -52,9 +52,9 @@ namespace Dartware.NRadio
 			bufferingCancellationTokenSource?.Cancel();
 			metadataCancellationTokenSource?.Cancel();
 
-			MetadataChanged?.Invoke(Metadata.Empty);
+			MetadataChanged?.Invoke(NRadio.Metadata.Empty);
 
-			Metadata = Metadata.Empty;
+			Metadata = NRadio.Metadata.Empty;
 			
 			Pause();
 			Bass.BASS_ChannelStop(handle);

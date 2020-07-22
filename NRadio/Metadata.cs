@@ -6,7 +6,7 @@ namespace Dartware.NRadio
 	/// <summary>
 	/// Stores metadata that is supplied together with the audio stream.
 	/// </summary>
-	public sealed class Metadata : IEquatable<Metadata>
+	internal sealed class Metadata : IMetadata
 	{
 
 		/// <summary>
@@ -68,7 +68,7 @@ namespace Dartware.NRadio
 		/// </summary>
 		/// <param name="otherMetadata">An object to compare with this object.</param>
 		/// <returns><see langword="true"/> if the current object is equal to the other parameter; otherwise, <see langword="false"/>.</returns>
-		public Boolean Equals([AllowNull] Metadata otherMetadata)
+		public Boolean Equals([AllowNull] IMetadata otherMetadata)
 		{
 			
 			if (otherMetadata == null)

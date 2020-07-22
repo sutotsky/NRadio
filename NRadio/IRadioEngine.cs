@@ -18,7 +18,7 @@ namespace Dartware.NRadio
 		/// <summary>
 		/// Gets the current metadata.
 		/// </summary>
-		Metadata Metadata { get; }
+		IMetadata Metadata { get; }
 
 		/// <summary>
 		/// Occurs when connection is started.
@@ -48,7 +48,7 @@ namespace Dartware.NRadio
 		/// <summary>
 		/// Occurs when metadata changed.
 		/// </summary>
-		event Action<Metadata> MetadataChanged;
+		event Action<IMetadata> MetadataChanged;
 
 		/// <summary>
 		/// Sets the stream URL.
