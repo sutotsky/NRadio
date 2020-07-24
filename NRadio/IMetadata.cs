@@ -5,7 +5,7 @@ namespace Dartware.NRadio
 	/// <summary>
 	/// Defines functionality for stores metadata that is supplied together with the audio stream.
 	/// </summary>
-	public interface IMetadata : IEquatable<IMetadata>
+	public interface IMetadata
 	{
 
 		/// <summary>

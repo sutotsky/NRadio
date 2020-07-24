@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Dartware.NRadio
@@ -8,7 +9,7 @@ namespace Dartware.NRadio
 	/// </summary>
 	public interface IRadioEngine
 	{
-		
+
 		/// <summary>
 		/// Gets or sets the volume level. Values in the range from 0 to 100 are allowed.
 		/// </summary>
@@ -19,6 +20,26 @@ namespace Dartware.NRadio
 		/// Gets the current metadata.
 		/// </summary>
 		IMetadata Metadata { get; }
+
+		/// <summary>
+		/// Gets all available output devices.
+		/// </summary>
+		IEnumerable<IDevice> Devices { get; }
+
+		/// <summary>
+		/// Gets the system default output device.
+		/// </summary>
+		IDevice SystemDefaultDevice { get; }
+
+		/// <summary>
+		/// Gets the current output device.
+		/// </summary>
+		IDevice CurrentDevice { get; }
+
+		/// <summary>
+		/// Gets or sets a value that indicates need to audo detect default system audio device.
+		/// </summary>
+		Boolean AutoDetectAudioDevice { get; set; }
 
 		/// <summary>
 		/// Occurs when connection is started.
@@ -51,6 +72,11 @@ namespace Dartware.NRadio
 		event Action<IMetadata> MetadataChanged;
 
 		/// <summary>
+		/// Occurs when output device changed.
+		/// </summary>
+		event Action<IDevice> DeviceChanged;
+
+		/// <summary>
 		/// Sets the stream URL.
 		/// </summary>
 		/// <param name="url">Stream URL.</param>
@@ -77,6 +103,18 @@ namespace Dartware.NRadio
 		/// Pause playing.
 		/// </summary>
 		void Pause();
+
+		/// <summary>
+		/// Sets the current output device.
+		/// </summary>
+		/// <param name="device">Output device.</param>
+		void SetDevice(IDevice device);
+
+		/// <summary>
+		/// Sets the current output device.
+		/// </summary>
+		/// <param name="device">Output device.</param>
+		Task SetDeviceAsync(IDevice device);
 
 	}
 }

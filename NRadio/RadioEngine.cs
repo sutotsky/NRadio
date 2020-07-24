@@ -28,6 +28,8 @@ namespace Dartware.NRadio
 		{
 			volume = 100;
 			urlsStack = new ConcurrentStack<String>();
+			CurrentDevice = SystemDefaultDevice;
+			AutoDetectAudioDevice = true;
 		}
 
 		/// <summary>
@@ -36,7 +38,7 @@ namespace Dartware.NRadio
 		private void Init()
 		{
 			
-			Bass.BASS_Init(-1, SAMPLING_FREQUENCY, BASSInit.BASS_DEVICE_DEFAULT, IntPtr.Zero);
+			Bass.BASS_Init((CurrentDevice as Device).Handle, SAMPLING_FREQUENCY, BASSInit.BASS_DEVICE_DEFAULT, IntPtr.Zero);
 
 			bufferingCancellationTokenSource = new CancellationTokenSource();
 			metadataCancellationTokenSource = new CancellationTokenSource();
