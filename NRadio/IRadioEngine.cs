@@ -11,6 +11,11 @@ namespace Dartware.NRadio
 	{
 
 		/// <summary>
+		/// Gets the current URL.
+		/// </summary>
+		String URL { get; }
+
+		/// <summary>
 		/// Gets or sets the volume level. Values in the range from 0 to 100 are allowed.
 		/// </summary>
 		/// <exception cref="ArgumentOutOfRangeException"></exception>
@@ -87,12 +92,6 @@ namespace Dartware.NRadio
 		/// </summary>
 		/// <param name="url">Stream URL.</param>
 		Task SetURLAsync(String url);
-
-		/// <summary>
-		/// Returns current URL of the stream.
-		/// </summary>
-		/// <returns>URL of the stream.</returns>
-		String GetURL();
 
 		/// <summary>
 		/// Starts playing.

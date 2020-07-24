@@ -9,15 +9,20 @@ namespace Dartware.NRadio
 	{
 
 		/// <summary>
+		/// Stores the current URL.
+		/// </summary>
+		private String url;
+
+		/// <summary>
 		/// The stream urls concurrent stack.
 		/// </summary>
 		private readonly ConcurrentStack<String> urlsStack;
 
 		/// <summary>
-		/// Contains the current stream URL.
+		/// Gets the current URL.
 		/// </summary>
-		private String url;
-		
+		public String URL => url;
+
 		/// <summary>
 		/// Occurs when connection is started.
 		/// </summary>
@@ -80,12 +85,6 @@ namespace Dartware.NRadio
 		{
 			await Task.Run(() => SetURL(url));
 		}
-
-		/// <summary>
-		/// Returns current URL of the stream.
-		/// </summary>
-		/// <returns>URL of the stream.</returns>
-		public String GetURL() => url;
 
 	}
 }
