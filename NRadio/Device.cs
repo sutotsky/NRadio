@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace Dartware.NRadio
 {
 	/// <summary>
-	/// Stores device info.
+	/// Stores output device info.
 	/// </summary>
 	internal sealed class Device : IDevice, IEquatable<Device>
 	{
@@ -37,7 +37,7 @@ namespace Dartware.NRadio
 		/// <summary>
 		/// Device handle.
 		/// </summary>
-		public Int32 Handle { get; }
+		internal Int32 Handle { get; }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Device"/> class.

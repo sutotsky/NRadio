@@ -3,7 +3,7 @@
 namespace Dartware.NRadio
 {
 	/// <summary>
-	/// Defines functionality for stores device info.
+	/// Defines functionality for stores output device info.
 	/// </summary>
 	public interface IDevice
 	{
