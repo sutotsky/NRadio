@@ -68,7 +68,7 @@ namespace Dartware.NRadio
 		/// </summary>
 		/// <param name="otherMetadata">An object to compare with this object.</param>
 		/// <returns><see langword="true"/> if the current object is equal to the other parameter; otherwise, <see langword="false"/>.</returns>
-		public Boolean Equals([AllowNull] Metadata otherMetadata)
+		public Boolean Equals(Metadata otherMetadata)
 		{
 			
 			if (otherMetadata == null)

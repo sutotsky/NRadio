@@ -1,24 +1,16 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework>netcoreapp3.1</TargetFramework>
-		<AssemblyName>Dartware.NRadio</AssemblyName>
-		<RootNamespace>Dartware.NRadio</RootNamespace>
-	</PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Dartware.NRadio</RootNamespace>
+    <AssemblyName>Dartware.NRadio</AssemblyName>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<PlatformTarget>AnyCPU</PlatformTarget>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-	</PropertyGroup>
-
-	<ItemGroup>
-	  <Reference Include="Bass.Net">
-	    <HintPath>..\Libraries\Bass24.Net\core\Bass.Net.dll</HintPath>
-	  </Reference>
-	</ItemGroup>
+  <ItemGroup>
+    <Reference Include="Bass.Net">
+      <HintPath>..\Libraries\Bass24.Net\standard\Bass.Net.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 
 </Project>

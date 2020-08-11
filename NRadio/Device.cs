@@ -70,7 +70,7 @@ namespace Dartware.NRadio
 		/// </summary>
 		/// <param name="otherDevice">An object to compare with this object.</param>
 		/// <returns><see langword="true"/> if the current object is equal to the other parameter; otherwise, <see langword="false"/>.</returns>
-		public Boolean Equals([AllowNull] Device otherDevice)
+		public Boolean Equals(Device otherDevice)
 		{
 
 			if (otherDevice == null)
