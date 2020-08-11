@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using Un4seen.Bass;
 
@@ -30,6 +31,8 @@ namespace Dartware.NRadio
 			urlsStack = new ConcurrentStack<String>();
 			CurrentDevice = SystemDefaultDevice;
 			AutoDetectAudioDevice = true;
+			RecordingPath = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic);
+			SplitByTrackWhileRecording = false;
 		}
 
 		/// <summary>
@@ -42,6 +45,7 @@ namespace Dartware.NRadio
 
 			bufferingCancellationTokenSource = new CancellationTokenSource();
 			metadataCancellationTokenSource = new CancellationTokenSource();
+			recordingCancellationTokenSource = new CancellationTokenSource();
 
 		}
 
@@ -53,6 +57,8 @@ namespace Dartware.NRadio
 			
 			bufferingCancellationTokenSource?.Cancel();
 			metadataCancellationTokenSource?.Cancel();
+
+			StopRecording();
 
 			MetadataChanged?.Invoke(NRadio.Metadata.Empty);
 

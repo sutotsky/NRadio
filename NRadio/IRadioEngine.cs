@@ -47,6 +47,16 @@ namespace Dartware.NRadio
 		Boolean AutoDetectAudioDevice { get; set; }
 
 		/// <summary>
+		/// Gets or sets the recording path.
+		/// </summary>
+		String RecordingPath { get; set; }
+
+		/// <summary>
+		/// <see langword="true"/> if necessary splitting by track while recording, otherwise <see langword="false"/>.
+		/// </summary>
+		Boolean SplitByTrackWhileRecording { get; set; }
+
+		/// <summary>
 		/// Occurs when connection is started.
 		/// </summary>
 		event Action ConnectionStarted;
@@ -114,6 +124,16 @@ namespace Dartware.NRadio
 		/// </summary>
 		/// <param name="device">Output device.</param>
 		Task SetDeviceAsync(IDevice device);
+
+		/// <summary>
+		/// Start recording.
+		/// </summary>
+		void StartRecording();
+
+		/// <summary>
+		/// Stop recording.
+		/// </summary>
+		void StopRecording();
 
 	}
 }
