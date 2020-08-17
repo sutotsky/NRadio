@@ -48,9 +48,9 @@ namespace Dartware.NRadio
 				if (value)
 				{
 
-					RestartRecording();
-
 					MetadataChanged += OnMetadataChanged;
+
+					RestartRecording();
 
 				}
 				else
@@ -111,7 +111,7 @@ namespace Dartware.NRadio
 				String fileName = SplitByTrackWhileRecording ? metadata.SongName : DateTime.Now.ToLongTimeString().Replace(':', '-');
 				String fullFileName = $"{recordingPath}{Path.DirectorySeparatorChar}{fileName}.{fileExtension}";
 
-				if (File.Exists(fileName))
+				if (File.Exists(fullFileName))
 				{
 					for (Int32 index = 1; ; index++)
 					{
@@ -165,6 +165,8 @@ namespace Dartware.NRadio
 			isRecording = false;
 
 			recordingCancellationTokenSource?.Cancel();
+
+			recordingCancellationTokenSource = null;
 
 		}
 

@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Dartware.NRadio
 {
-	/// <summary>
-	/// Stores metadata that is supplied together with the audio stream.
-	/// </summary>
-	internal sealed class Metadata : IMetadata, IEquatable<Metadata>
+    /// <summary>
+    /// Stores metadata that is supplied together with the audio stream.
+    /// </summary>
+    internal sealed class Metadata : IMetadata, IEquatable<Metadata>
 	{
 
 		/// <summary>
