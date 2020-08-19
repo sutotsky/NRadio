@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Diagnostics.CodeAnalysis;
+using System.Collections.Generic;
 using System.Threading;
 using Un4seen.Bass;
 
@@ -18,21 +18,23 @@ namespace Dartware.NRadio
 		private const Int32 SAMPLING_FREQUENCY = 44100;
 
 		/// <summary>
-		/// The channel handle. A HSTREAM, HMUSIC, or HRECORD.
+		/// The channel handle.
 		/// </summary>
-		private Int32 handle;
+		private readonly Handle handle;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="RadioEngine"/> class.
 		/// </summary>
 		internal RadioEngine()
 		{
+			handle = new Handle();
 			volume = 100;
 			urlsStack = new ConcurrentStack<String>();
 			CurrentDevice = SystemDefaultDevice;
 			AutoDetectAudioDevice = true;
 			RecordingPath = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic);
 			SplitByTrackWhileRecording = false;
+			equalizer = new Dictionary<Tuple<Int32, Int32>, Double>();
 		}
 
 		/// <summary>

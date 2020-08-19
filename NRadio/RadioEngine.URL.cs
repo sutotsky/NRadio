@@ -62,7 +62,9 @@ namespace Dartware.NRadio
 
 					ConnectionStarted?.Invoke();
 
-					handle = Bass.BASS_StreamCreateURL(currentURL, 0, BASSFlag.BASS_DEFAULT, null, IntPtr.Zero);
+					Int32 handle = Bass.BASS_StreamCreateURL(currentURL, 0, BASSFlag.BASS_DEFAULT, null, IntPtr.Zero);
+
+					this.handle.SetHandle(handle);
 
 					ConnectionEnded?.Invoke();
 
