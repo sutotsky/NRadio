@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 using Un4seen.Bass;
 
 namespace Dartware.NRadio
@@ -33,32 +34,35 @@ namespace Dartware.NRadio
 		/// <param name="cancellationToken">Cancellation handling token.</param>
 		private void StartBuferingHandle(CancellationToken cancellationToken)
 		{
-
-			BufferingStarted?.Invoke();
-
-			while (Bass.BASS_ChannelIsActive(handle) != BASSActive.BASS_ACTIVE_PLAYING && !cancellationToken.IsCancellationRequested)
+			Task.Run(() =>
 			{
 
-				Int64 filePosition = Bass.BASS_StreamGetFilePosition(handle, BASSStreamFilePosition.BASS_FILEPOS_BUFFERING);
-				Int64 bufferingPercentage = 100 - filePosition;
+				BufferingStarted?.Invoke();
 
-				BufferingProgressChanged?.Invoke(bufferingPercentage);
-
-				if (bufferingPercentage < 0 || bufferingPercentage >= 100)
+				while (Bass.BASS_ChannelIsActive(handle) != BASSActive.BASS_ACTIVE_PLAYING && !cancellationToken.IsCancellationRequested)
 				{
 
-					BufferingEnded?.Invoke();
-					
-					return;
+					Int64 filePosition = Bass.BASS_StreamGetFilePosition(handle, BASSStreamFilePosition.BASS_FILEPOS_BUFFERING);
+					Int64 bufferingPercentage = 100 - filePosition;
+
+					BufferingProgressChanged?.Invoke(bufferingPercentage);
+
+					if (bufferingPercentage < 0 || bufferingPercentage >= 100)
+					{
+
+						BufferingEnded?.Invoke();
+
+						return;
+
+					}
+
+					Thread.Sleep(50);
 
 				}
 
-				Thread.Sleep(50);
+				BufferingEnded?.Invoke();
 
-			}
-
-			BufferingEnded?.Invoke();
-
+			});
 		}
 
 	}
