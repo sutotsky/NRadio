@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Dartware.NRadio
+namespace Dartware.NRadio.Devices
 {
 	/// <summary>
 	/// The type of audio device.

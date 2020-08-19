@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Dartware.NRadio.Devices;
+using Dartware.NRadio.Meta;
 
 namespace Dartware.NRadio
 {

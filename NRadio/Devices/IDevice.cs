@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Dartware.NRadio
+namespace Dartware.NRadio.Devices
 {
 	/// <summary>
 	/// Defines functionality for stores output device info.

@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using Dartware.NRadio.Meta;
 
 namespace Dartware.NRadio
 {

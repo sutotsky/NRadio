@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Dartware.NRadio
+namespace Dartware.NRadio.Core
 {
 	/// <summary>
 	/// Represents channel handle. A HSTREAM, HMUSIC, or HRECORD.

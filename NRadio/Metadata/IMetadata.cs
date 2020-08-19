@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Dartware.NRadio
+namespace Dartware.NRadio.Meta
 {
 	/// <summary>
 	/// Defines functionality for stores metadata that is supplied together with the audio stream.

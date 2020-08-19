@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Threading;
 using Un4seen.Bass;
+using Dartware.NRadio.FX;
+using Dartware.NRadio.Core;
+using Dartware.NRadio.Devices;
 
 namespace Dartware.NRadio
 {
@@ -34,7 +36,7 @@ namespace Dartware.NRadio
 			AutoDetectAudioDevice = true;
 			RecordingPath = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic);
 			SplitByTrackWhileRecording = false;
-			equalizer = new Dictionary<Tuple<Int32, Int32>, Double>();
+			Equalizer = new Equalizer(handle);
 		}
 
 		/// <summary>
@@ -62,9 +64,9 @@ namespace Dartware.NRadio
 
 			StopRecording();
 
-			MetadataChanged?.Invoke(NRadio.Metadata.Empty);
+			MetadataChanged?.Invoke(Meta.Metadata.Empty);
 
-			Metadata = NRadio.Metadata.Empty;
+			Metadata = Meta.Metadata.Empty;
 			
 			Pause();
 			Bass.BASS_ChannelStop(handle);

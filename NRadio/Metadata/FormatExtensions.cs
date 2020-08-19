@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Dartware.NRadio
+namespace Dartware.NRadio.Meta
 {
 	/// <summary>
 	/// Extension methods for <see cref="Format"/> enumerable.

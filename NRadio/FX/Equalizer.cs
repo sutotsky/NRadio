@@ -1,12 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Un4seen.Bass;
+using Dartware.NRadio.Core;
 
-namespace Dartware.NRadio
+namespace Dartware.NRadio.FX
 {
-	internal sealed partial class RadioEngine
+	/// <summary>
+	/// Equalizer effect - an effect that adjusts the timbre of an audio signal by changing the amplitude of its frequency components.
+	/// </summary>
+	internal sealed class Equalizer : IEqualizer
 	{
+
+		/// <summary>
+		/// The channel handle.
+		/// </summary>
+		private readonly Handle handle;
 
 		/// <summary>
 		/// Contains a dictionary with equalizer channels, frequencies and values.
@@ -14,27 +22,20 @@ namespace Dartware.NRadio
 		private readonly IDictionary<Tuple<Int32, Int32>, Double> equalizer;
 
 		/// <summary>
+		/// Initializes a new instance of the <see cref="Equalizer"/> class.
+		/// </summary>
+		/// <param name="handle">The channel handle.</param>
+		internal Equalizer(Handle handle)
+		{
+			this.handle = handle;
+		}
+
+		/// <summary>
 		/// Sets the equalizer values according to frequencies.
 		/// </summary>
 		/// <param name="equalizer">Dictionary with equalizer frequencies and values.</param>
 		public void SetEqualizer(IDictionary<Int32, Double> equalizer)
 		{
-
-			if (equalizer == null)
-			{
-				throw new ArgumentNullException(nameof(equalizer), "Equalizer cannot be null.");
-			}
-
-			if (equalizer.Count == 0)
-			{
-				return;
-			}
-
-			foreach (KeyValuePair<Int32, Double> valuePair in equalizer)
-			{
-				SetEqualizerFrequency(valuePair.Key, valuePair.Value);
-			}
-
 		}
 
 		/// <summary>
@@ -44,9 +45,6 @@ namespace Dartware.NRadio
 		/// <param name="value"></param>
 		public void SetEqualizerFrequency(Int32 frequency, Double value)
 		{
-
-			BASS_DX8_PARAMEQ parameqDX8 = new BASS_DX8_PARAMEQ();
-
 		}
 
 		/// <summary>

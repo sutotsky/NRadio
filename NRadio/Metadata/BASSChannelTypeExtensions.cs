@@ -1,6 +1,6 @@
 ﻿using Un4seen.Bass;
 
-namespace Dartware.NRadio
+namespace Dartware.NRadio.Meta
 {
 	/// <summary>
 	/// Extensions for <see cref="Un4seen.Bass.BASSChannelType"/> enum.

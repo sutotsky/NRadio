@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Un4seen.Bass;
+using Dartware.NRadio.Devices;
 
 namespace Dartware.NRadio
 {
