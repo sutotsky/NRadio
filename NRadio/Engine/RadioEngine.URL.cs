@@ -69,6 +69,7 @@ namespace Dartware.NRadio
 					ConnectionEnded?.Invoke();
 
 					SetVolume(0);
+					UpdateFX();
 					Bass.BASS_ChannelPlay(handle, false);
 
 					StartMetadataHandle(metadataCancellationTokenSource.Token);

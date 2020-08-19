@@ -27,6 +27,15 @@ namespace Dartware.NRadio.Core
 		}
 
 		/// <summary>
+		/// Initializes a new instance of the <see cref="Handle"/> class.
+		/// </summary>
+		/// <param name="handle">Channel handle.</param>
+		internal Handle(Int32 handle)
+		{
+			this.handle = handle;
+		}
+
+		/// <summary>
 		/// Sets the handle
 		/// </summary>
 		/// <param name="handle">Channel handle.</param>

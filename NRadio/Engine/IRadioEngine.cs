@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Dartware.NRadio.Devices;
+using Dartware.NRadio.FX;
 using Dartware.NRadio.Meta;
 
 namespace Dartware.NRadio
@@ -57,6 +58,11 @@ namespace Dartware.NRadio
 		/// <see langword="true"/> if necessary splitting by track while recording, otherwise <see langword="false"/>.
 		/// </summary>
 		Boolean SplitByTrackWhileRecording { get; set; }
+
+		/// <summary>
+		/// An effect that adjusts the timbre of an audio signal by changing the amplitude of its frequency components.
+		/// </summary>
+		IEqualizer Equalizer { get; }
 
 		/// <summary>
 		/// Occurs when connection is started.
