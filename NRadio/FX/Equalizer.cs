@@ -84,7 +84,7 @@ namespace Dartware.NRadio.FX
 
 			equalizerValue.Handle = new Handle(fxHandle);
 
-			parameqDX8.fCenter = (Single) frequency;
+			parameqDX8.fCenter = frequency;
 			parameqDX8.fGain = (Single) value;
 			parameqDX8.fBandwidth = 8f;
 

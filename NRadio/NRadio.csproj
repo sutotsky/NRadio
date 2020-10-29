@@ -5,6 +5,7 @@
     <RootNamespace>Dartware.NRadio</RootNamespace>
     <AssemblyName>Dartware.NRadio</AssemblyName>
     <LangVersion>8.0</LangVersion>
+    <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
