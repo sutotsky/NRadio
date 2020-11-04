@@ -13,7 +13,26 @@ namespace Dartware.NRadio
 		/// <summary>
 		/// The recording status.
 		/// </summary>
-		public RecordingStatus RecordingStatus { get; private set; }
+		private RecordingStatus recordingStatus;
+
+		/// <summary>
+		/// The recording status.
+		/// </summary>
+		public RecordingStatus RecordingStatus
+		{
+			get => recordingStatus;
+			private set
+			{
+				if (recordingStatus != value)
+				{
+
+					recordingStatus = value;
+
+					RecordingStatusChanged?.Invoke(value);
+
+				}
+			}
+		}
 
 		/// <summary>
 		/// Cancellation token source for recording.
@@ -29,6 +48,11 @@ namespace Dartware.NRadio
 		/// Gets or sets the recording path.
 		/// </summary>
 		public String RecordingPath { get; set; }
+
+		/// <summary>
+		/// Occurs when recording status changed.
+		/// </summary>
+		public event Action<RecordingStatus> RecordingStatusChanged;
 
 		/// <summary>
 		/// <see langword="true"/> if necessary splitting by track while recording, otherwise <see langword="false"/>.

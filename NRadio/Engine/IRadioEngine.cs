@@ -110,6 +110,16 @@ namespace Dartware.NRadio
 		event Action<IDevice> DeviceChanged;
 
 		/// <summary>
+		/// Occurs when playback status changed.
+		/// </summary>
+		event Action<PlaybackStatus> PlaybackStatusChanged;
+
+		/// <summary>
+		/// Occurs when recording status changed.
+		/// </summary>
+		event Action<RecordingStatus> RecordingStatusChanged;
+
+		/// <summary>
 		/// Sets the stream URL.
 		/// </summary>
 		/// <param name="url">Stream URL.</param>
