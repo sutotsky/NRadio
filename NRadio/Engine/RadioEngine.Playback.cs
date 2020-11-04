@@ -8,7 +8,7 @@ namespace Dartware.NRadio
 		/// <summary>
 		/// Contains flag which indicates whether playback is in progress.
 		/// </summary>
-		private Boolean isPlaying;
+		public Boolean IsPlaying { get; private set; }
 
 		/// <summary>
 		/// Starts playing.
@@ -18,7 +18,7 @@ namespace Dartware.NRadio
 
 			SetVolume(volume);
 
-			isPlaying = true;
+			IsPlaying = true;
 
 		}
 
@@ -30,7 +30,7 @@ namespace Dartware.NRadio
 
 			SetVolume(0);
 
-			isPlaying = false;
+			IsPlaying = false;
 
 		}
 

@@ -25,6 +25,11 @@ namespace Dartware.NRadio
 		Double Volume { get; set; }
 
 		/// <summary>
+		/// Contains flag which indicates whether playback is in progress.
+		/// </summary>
+		Boolean IsPlaying { get; }
+
+		/// <summary>
 		/// Gets the current metadata.
 		/// </summary>
 		IMetadata Metadata { get; }

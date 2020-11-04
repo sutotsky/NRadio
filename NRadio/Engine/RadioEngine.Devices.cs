@@ -99,7 +99,7 @@ namespace Dartware.NRadio
 			if (!String.IsNullOrEmpty(url))
 			{
 
-				Boolean continuePlaying = isPlaying;
+				Boolean continuePlaying = IsPlaying;
 
 				SetURL(url);
 
