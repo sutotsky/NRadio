@@ -27,7 +27,7 @@ namespace Dartware.NRadio
 		/// <summary>
 		/// Contains flag which indicates whether playback is in progress.
 		/// </summary>
-		Boolean IsPlaying { get; }
+		PlaybackStatus PlaybackStatus { get; }
 
 		/// <summary>
 		/// The recording is started.

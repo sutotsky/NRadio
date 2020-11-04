@@ -20,7 +20,7 @@ namespace Dartware.NRadio
 			get
 			{
 
-				if (!IsPlaying)
+				if (PlaybackStatus != PlaybackStatus.Play)
 				{
 					return volume;
 				}
@@ -38,7 +38,7 @@ namespace Dartware.NRadio
 
 				volume = value;
 
-				if (IsPlaying)
+				if (PlaybackStatus == PlaybackStatus.Play)
 				{
 					SetVolume(value);
 				}
