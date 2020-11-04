@@ -11,9 +11,9 @@ namespace Dartware.NRadio
 	{
 
 		/// <summary>
-		/// The recording is started.
+		/// The recording status.
 		/// </summary>
-		public Boolean IsRecording { get; private set; }
+		public RecordingStatus RecordingStatus { get; private set; }
 
 		/// <summary>
 		/// Cancellation token source for recording.
@@ -72,7 +72,7 @@ namespace Dartware.NRadio
 		public void StartRecording()
 		{
 
-			if (IsRecording)
+			if (RecordingStatus == RecordingStatus.Recording)
 			{
 				return;
 			}
@@ -82,7 +82,7 @@ namespace Dartware.NRadio
 				return;
 			}
 
-			IsRecording = true;
+			RecordingStatus = RecordingStatus.Recording;
 
 			IMetadata metadata = Metadata;
 			String url = URL;
@@ -163,7 +163,7 @@ namespace Dartware.NRadio
 		public void StopRecording()
 		{
 
-			IsRecording = false;
+			RecordingStatus = RecordingStatus.Stop;
 
 			recordingCancellationTokenSource?.Cancel();
 
@@ -176,7 +176,7 @@ namespace Dartware.NRadio
 		/// </summary>
 		private void RestartRecording()
 		{
-			if (IsRecording)
+			if (RecordingStatus == RecordingStatus.Recording)
 			{
 				StopRecording();
 				StartRecording();

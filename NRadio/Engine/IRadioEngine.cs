@@ -32,7 +32,7 @@ namespace Dartware.NRadio
 		/// <summary>
 		/// The recording is started.
 		/// </summary>
-		Boolean IsRecording { get; }
+		RecordingStatus RecordingStatus { get; }
 
 		/// <summary>
 		/// Gets the current metadata.
