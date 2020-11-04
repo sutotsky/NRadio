@@ -30,6 +30,11 @@ namespace Dartware.NRadio
 		Boolean IsPlaying { get; }
 
 		/// <summary>
+		/// The recording is started.
+		/// </summary>
+		Boolean IsRecording { get; }
+
+		/// <summary>
 		/// Gets the current metadata.
 		/// </summary>
 		IMetadata Metadata { get; }
