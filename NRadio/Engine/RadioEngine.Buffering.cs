@@ -14,19 +14,9 @@ namespace Dartware.NRadio
 		private CancellationTokenSource bufferingCancellationTokenSource;
 
 		/// <summary>
-		/// Occurs when buffering is started.
-		/// </summary>
-		public event Action BufferingStarted;
-
-		/// <summary>
 		/// Occurs when buffering progress is changed.
 		/// </summary>
 		public event Action<Int64> BufferingProgressChanged;
-
-		/// <summary>
-		/// Occurs when buffering is ended.
-		/// </summary>
-		public event Action BufferingEnded;
 
 		/// <summary>
 		/// Starts tracking buffering progress.
@@ -37,7 +27,7 @@ namespace Dartware.NRadio
 			Task.Run(() =>
 			{
 
-				BufferingStarted?.Invoke();
+				ConnectionState = ConnectionState.Buffering;
 
 				while (Bass.BASS_ChannelIsActive(handle) != BASSActive.BASS_ACTIVE_PLAYING && !cancellationToken.IsCancellationRequested)
 				{
@@ -50,7 +40,7 @@ namespace Dartware.NRadio
 					if (bufferingPercentage < 0 || bufferingPercentage >= 100)
 					{
 
-						BufferingEnded?.Invoke();
+						ConnectionState = ConnectionState.None;
 
 						return;
 
@@ -60,7 +50,7 @@ namespace Dartware.NRadio
 
 				}
 
-				BufferingEnded?.Invoke();
+				ConnectionState = ConnectionState.None;
 
 			});
 		}

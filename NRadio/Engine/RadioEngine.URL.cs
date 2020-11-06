@@ -9,6 +9,11 @@ namespace Dartware.NRadio
 	{
 
 		/// <summary>
+		/// The connection state.
+		/// </summary>
+		private ConnectionState connectionState;
+
+		/// <summary>
 		/// Stores the current URL.
 		/// </summary>
 		private String url;
@@ -19,19 +24,33 @@ namespace Dartware.NRadio
 		private readonly ConcurrentStack<String> urlsStack;
 
 		/// <summary>
+		/// The connection state.
+		/// </summary>
+		public ConnectionState ConnectionState
+		{
+			get => connectionState;
+			private set
+			{
+				if (connectionState != value)
+				{
+
+					connectionState = value;
+
+					ConnectionStateChanged?.Invoke(value);
+
+				}
+			}
+		}
+
+		/// <summary>
 		/// Gets the current URL.
 		/// </summary>
 		public String URL => url;
 
 		/// <summary>
-		/// Occurs when connection is started.
+		/// Occurs when connection state is changed.
 		/// </summary>
-		public event Action ConnectionStarted;
-
-		/// <summary>
-		/// Occurs when connection is ended.
-		/// </summary>
-		public event Action ConnectionEnded;
+		public event Action<ConnectionState> ConnectionStateChanged;
 
 		/// <summary>
 		/// Sets the stream URL.
@@ -60,13 +79,11 @@ namespace Dartware.NRadio
 					Free();
 					Init();
 
-					ConnectionStarted?.Invoke();
+					ConnectionState = ConnectionState.Connection;
 
 					Int32 handle = Bass.BASS_StreamCreateURL(currentURL, 0, BASSFlag.BASS_DEFAULT, null, IntPtr.Zero);
 
 					this.handle.SetHandle(handle);
-
-					ConnectionEnded?.Invoke();
 
 					SetVolume(0);
 					UpdateFX();

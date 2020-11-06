@@ -14,6 +14,11 @@ namespace Dartware.NRadio
 	{
 
 		/// <summary>
+		/// The connection state.
+		/// </summary>
+		ConnectionState ConnectionState { get; }
+
+		/// <summary>
 		/// Gets the current URL.
 		/// </summary>
 		String URL { get; }
@@ -75,29 +80,14 @@ namespace Dartware.NRadio
 		IEqualizer Equalizer { get; }
 
 		/// <summary>
-		/// Occurs when connection is started.
+		/// Occurs when connection state is changed.
 		/// </summary>
-		event Action ConnectionStarted;
-
-		/// <summary>
-		/// Occurs when connection is ended.
-		/// </summary>
-		event Action ConnectionEnded;
-
-		/// <summary>
-		/// Occurs when buffering is started.
-		/// </summary>
-		event Action BufferingStarted;
+		event Action<ConnectionState> ConnectionStateChanged;
 
 		/// <summary>
 		/// Occurs when buffering progress is changed.
 		/// </summary>
 		event Action<Int64> BufferingProgressChanged;
-
-		/// <summary>
-		/// Occurs when buffering is ended.
-		/// </summary>
-		event Action BufferingEnded;
 
 		/// <summary>
 		/// Occurs when metadata changed.
